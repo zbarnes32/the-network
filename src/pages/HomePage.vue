@@ -33,6 +33,7 @@ async function getPosts(){
       </div>
       <div class="col-2">
         <p>Ads go here</p>
+        
       </div>
     </div>
   </section>
