@@ -1,4 +1,5 @@
 <script setup>
+import { RouterLink } from 'vue-router';
 import { Post } from '../models/Post.js';
 
 
@@ -15,7 +16,9 @@ defineProps({
     <div class="row">
         <div class="col-2">
             <div class="p-3">
-                <img :src="postProp.creator.picture" :alt="postProp.creator.name" class="creator-img" :title="postProp.creator.name">
+                <RouterLink :to="{name: 'Profile', params: { profileId: postProp.creatorId}}">
+                    <img :src="postProp.creator.picture" :alt="postProp.creator.name" class="creator-img" :title="postProp.creator.name">
+                </RouterLink>
             </div>
         </div>
         <div class="col-10 d-flex justify-content-start">
