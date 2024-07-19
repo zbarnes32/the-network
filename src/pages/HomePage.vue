@@ -21,13 +21,16 @@ async function getPosts(){
 </script>
 
 <template>
-  <section class="container">
+  <section class="container-fluid">
     <div class="row">
-      <div class="col-2 sidebar justify-content-start">
-        <p>Side goes here</p>
+      <div class="col-2 text-center">
+        <p>Side profile here</p>
       </div>
-      <div v-for="post in posts" :key="post.id" class="col-md-8">
-       <PostCard :postProp="post" /></div>
+      <div class="col-md-8 p-5">
+        <div v-for="post in posts" :key="post.id" >
+          <PostCard :postProp="post" />
+        </div>
+      </div>
       <div class="col-2">
         <p>Ads go here</p>
       </div>
