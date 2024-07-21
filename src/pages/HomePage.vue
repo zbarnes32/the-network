@@ -47,9 +47,10 @@ async function getMonetaryPictures(){
           <PostCard :postProp="post" />
         </div>
       </div>
-      <div v-for="monetaryPicture in monetaryPictures" :key="monetaryPicture.title" class="col-2 v-stack mx-auto">
-        <MonetaryPicture :monetaryPictureProp="monetaryPicture" />
-
+      <div class="col-2 v-stack mx-auto">
+        <div v-for="monetaryPicture in monetaryPictures" :key="monetaryPicture.title">
+          <MonetaryPicture :monetaryPictureProp="monetaryPicture" />
+        </div>
       </div>
     </div>
   </section>

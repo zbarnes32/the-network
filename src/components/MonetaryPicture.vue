@@ -9,8 +9,10 @@ defineProps({
 
 
 <template>
-<div class="my-3">
-    <img :src="monetaryPictureProp.tall" :alt="monetaryPictureProp.title">
+<div>
+    <div class="my-3">
+        <img :src="monetaryPictureProp.tall" :alt="monetaryPictureProp.title">
+    </div>
 </div>
 </template>
 
