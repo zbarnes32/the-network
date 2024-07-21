@@ -20,10 +20,10 @@ async function changePage(pageNumber){
 
 
 <template>
-    <div>
-        <button :disabled="currentPage == 1" @click="changePage(currentPage-1)">Previous Page</button>
+    <div class="d-flex justify-content-between">
+        <button :disabled="currentPage == 1" @click="changePage(currentPage-1)" class="btn btn-warning">Previous Page</button>
         <!-- FIXME disable next button when currentPage is equal to totalPages -->
-        <button :disabled="currentPage == 39" @click="changePage(currentPage+1)">Next Page</button>
+        <button :disabled="currentPage == 39" @click="changePage(currentPage+1)" class="btn btn-warning">Next Page</button>
     </div>
 </template>
 
