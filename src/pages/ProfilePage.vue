@@ -6,6 +6,7 @@ import { profilesService } from '../services/ProfilesService.js';
 import { AppState } from '../AppState.js';
 import { postsService } from '../services/PostsService.js';
 import PostCard from '../components/PostCard.vue';
+import NavigationButtons from '../components/NavigationButtons.vue';
 
 const profile = computed(() => AppState.profile)
 
@@ -28,9 +29,9 @@ async function getProfileById(profileId){
     }
 }
 
-async function getPostsByProfileId(profileId){
+async function getPostsByProfileId(profileId, pageNumber){
     try {
-     await postsService.getPostsByProfileId(profileId) 
+     await postsService.getPostsByProfileId(profileId, pageNumber) 
     }
     catch (error){
       Pop.error(error);
@@ -88,6 +89,9 @@ async function getPostsByProfileId(profileId){
         <div v-for="post in posts" :key="post.id" class="col-md-8">
             <PostCard :postProp="post"/>
         </div>
+    </section>
+    <section>
+        <NavigationButtons/>
     </section>
 </template>
 

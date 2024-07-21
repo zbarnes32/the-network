@@ -15,9 +15,9 @@ class PostsService {
         AppState.posts = posts
         AppState.currentPage = response.data.page
     }
-   async getPostsByProfileId(profileId) {
+   async getPostsByProfileId(profileId, pageNumber) {
         AppState.profilePosts = []
-       const response = await api.get(`api/posts?creatorId=${profileId}`)
+       const response = await api.get(`api/posts?creatorId=${profileId}&page=${pageNumber}`)
        logger.log("Able to get the specific posts by profile id", response.data)
        const posts = response.data.posts.map(postData => new Post(postData))
        AppState.profilePosts = posts
