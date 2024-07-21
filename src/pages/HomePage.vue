@@ -9,6 +9,7 @@ import MonetaryPicture from '../components/MonetaryPicture.vue';
 
 const posts = computed(() => AppState.posts)
 
+
 const monetaryPictures = computed(() => AppState.monetaryPictures)
 
 onMounted(() => { 
@@ -54,6 +55,8 @@ async function getMonetaryPictures(){
       </div>
     </div>
   </section>
+
+  <NavigationButtons/>
 </template>
 
 <style scoped lang="scss">
