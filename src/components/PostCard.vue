@@ -32,9 +32,12 @@ defineProps({
         <div class="col-12 text-start">
             <p>{{ postProp.body }}</p>
             <img :src="postProp.imgUrl" alt="" class="post-img">
-            <div class="text-end">
-                <span class="likes mdi mdi-heart-outline fs-2 p-1"></span>
-                <span class="fs-5 px-1">{{ postProp.likes.length }}</span>
+            <div class="d-flex justify-content-between">
+                <span class="pt-3 px-1">Posted on: {{ postProp.createdAt.toLocaleDateString() }}</span>
+                <div>
+                    <span class="likes mdi mdi-heart-outline fs-2 p-1"></span>
+                    <span class="fs-5 px-1">{{ postProp.likes.length }}</span>
+                </div>
             </div>
         </div>
     </div>
