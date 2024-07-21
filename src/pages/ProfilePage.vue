@@ -50,7 +50,7 @@ async function getPostsByProfileId(profileId){
                         <div class="d-flex justify-content-between">
                             <div class="main-info">
                                 <img :src="profile.picture" :alt="profile.name" class="profile-picture">
-                                <h3 class="card-title pt-3">{{ profile.name }}</h3>
+                                <h3 class="card-title pt-3">{{ profile.name }}<span v-if="profile.graduated"><span class="mdi mdi-school"></span></span></h3>
                                 <h5 class="graduation-class">{{ profile.class }}</h5>
                             </div>
                             <div class="socials">
