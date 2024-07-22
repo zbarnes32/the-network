@@ -7,6 +7,9 @@ import { AppState } from '../AppState.js';
 import { postsService } from '../services/PostsService.js';
 import PostCard from '../components/PostCard.vue';
 import NavigationButtons from '../components/NavigationButtons.vue';
+import MonetaryPicture from '../components/MonetaryPicture.vue';
+import { monetaryPicturesService } from '../services/MonetaryPicturesService.js';
+import PostForm from '../components/PostForm.vue';
 
 const profile = computed(() => AppState.profile)
 
@@ -14,10 +17,15 @@ const posts = computed(() => AppState.profilePosts)
 
 const route = useRoute()
 
+const monetaryPictures = computed(() => AppState.monetaryPictures)
+
+const account = computed(() => AppState.account)
+
 onMounted(() => {
     const profileId = route.params.profileId
     getProfileById(profileId)
     getPostsByProfileId(profileId)
+    getMonetaryPictures()
 })
 
 async function getProfileById(profileId){
@@ -38,14 +46,23 @@ async function getPostsByProfileId(profileId, pageNumber){
     }
 }
 
+async function getMonetaryPictures(){
+  try {
+    await monetaryPicturesService.getMonetaryPictures()
+  }
+  catch (error){
+    Pop.error(error);
+  }
+}
+
 </script>
 
 
 <template>
     <div v-if="profile" class="container">
         <div class="row">
-            <div class="col-12">
-                <div class="card">
+            <div class="col-10 px-0">
+                <div class="card mt-4">
                 <img :src="profile.coverImg" class="card-img-top cover-img" alt="Cover Image">
                     <div class="card-body profile-body">
                         <div class="d-flex justify-content-between">
@@ -74,19 +91,30 @@ async function getPostsByProfileId(profileId, pageNumber){
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="card-body d-flex">
-                <img :src="profile.picture" :alt="profile.name" class="post-card-img">
-                <form>
-                    <textarea name="post-body" id="" placeholder="Share what's happening..."></textarea>
-                </form>
+            <div class="col-2 v-stack mx-auto">
+                <div v-for="monetaryPicture in monetaryPictures" :key="monetaryPicture.title">
+            <MonetaryPicture :monetaryPictureProp="monetaryPicture" />
+                </div>
             </div>
-        </div>
+            
+                <div v-if="account.id == profile.id" class="card col-10 mt-4 p-1">
+                    <div class="card-body d-flex px-1">
+                        <img :src="profile.picture" :alt="profile.name" class="post-card-img">
+                        <PostForm />
+                    <!-- <div class="card-body d-flex px-1">
+                        <img :src="profile.picture" :alt="profile.name" class="post-card-img">
+                        <form>
+                            <div class="network-post-card">
+                                <textarea name="post-body" class="post-body" id="" placeholder="Share what's happening..."></textarea>
+                            </div>
+                        </form> -->
+                    </div>
+                </div>
+        </div>  
     </div>
     <section class="row">
             <!-- {{ posts }} -->
-        <div v-for="post in posts" :key="post.id" class="col-md-8">
+        <div v-for="post in posts" :key="post.id" class="col-md-10">
             <PostCard :postProp="post"/>
         </div>
     </section>
@@ -100,7 +128,7 @@ async function getPostsByProfileId(profileId, pageNumber){
 
 
 .cover-img {
-    height: 20vh;
+    height: 60vh;
     width: 100%;
     object-fit: cover;
     object-position: center;
@@ -110,21 +138,25 @@ async function getPostsByProfileId(profileId, pageNumber){
     height: 20vh;
     aspect-ratio: 1/1;
     border-radius: 50%;
+    border: 1px solid black;
 }
 
 .post-card-img {
-    height: 8vh;
+    height: 15vh;
     aspect-ratio: 1/1;
     border-radius: 50%;
+    border: 1px solid black;
 }
 
 a {
     color: rgb(86, 86, 86)
 }
 
-textarea {
-    width: 60vh;
-}
+// textarea {
+//     margin-left: 3.5em;
+//     width: 100vh;
+//     height: 20vh;
+// }
 
 
 </style>

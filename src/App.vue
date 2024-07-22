@@ -1,5 +1,6 @@
 <script setup>
 import { AppState } from './AppState'
+import MonetaryPicture from './components/MonetaryPicture.vue';
 import Navbar from './components/Navbar.vue'
 
 
@@ -11,10 +12,8 @@ import Navbar from './components/Navbar.vue'
   </header>
   <main>
     <router-view />
+    
   </main>
-  <footer class="bg-dark text-light">
-    Made with 💖 by CodeWorks
-  </footer>
 </template>
 
 <style lang="scss">

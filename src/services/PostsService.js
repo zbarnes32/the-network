@@ -8,9 +8,17 @@ import { api } from "./AxiosService.js"
 
 
 class PostsService {
+    async createPost(postData) {
+        const response = await api.post('api/posts', postData)
+        logger.log("created post ✅", response.data)
+        const newPost = new Post (response.data)
+        AppState.posts.unshift(newPost)
+    }
     async searchPosts(searchTerm) {
-        const response = await api.get(`api/posts/search?query=${searchTerm}`)
+        const response = await api.get(`api/posts`, searchTerm)
         logger.log('Did the search work?', response.data)
+        const postsBySearch = response.data.posts.map(searchData => new Post(searchData))
+        AppState.searchingPosts = postsBySearch
     }
     async changePage(pageNumber) {
         const response = await api.get(`api/posts?page=${pageNumber}`)
