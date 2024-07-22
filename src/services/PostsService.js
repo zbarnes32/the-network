@@ -30,10 +30,10 @@ class PostsService {
     }
     async searchPosts(searchTerm) {
         // NOTE we are passing the search term as body here, we need to interpolate it into the url /api/posts?query=*query*
-        const response = await api.get(`api/posts`, searchTerm)
+        const response = await api.get(`api/posts?query=${searchTerm}`)
         logger.log('Did the search work?', response.data)
         const postsBySearch = response.data.posts.map(searchData => new Post(searchData))
-        AppState.searchingPosts = postsBySearch
+        AppState.posts = postsBySearch
     }
     async changePage(pageNumber) {
         const response = await api.get(`api/posts?page=${pageNumber}`)

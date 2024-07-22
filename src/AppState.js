@@ -17,5 +17,5 @@ export const AppState = reactive({
 
   currentPage: 1,
 
-  searchingPosts: null
+  searchingPosts: []
 })
