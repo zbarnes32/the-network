@@ -8,6 +8,10 @@ import { api } from "./AxiosService.js"
 
 
 class PostsService {
+    async searchPosts(searchTerm) {
+        const response = await api.get(`api/posts/search?query=${searchTerm}`)
+        logger.log('Did the search work?', response.data)
+    }
     async changePage(pageNumber) {
         const response = await api.get(`api/posts?page=${pageNumber}`)
         logger.log('Are we getting the next 20 posts?', response.data)

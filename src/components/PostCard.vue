@@ -68,7 +68,7 @@ defineProps({
 }
 
 .likes{
-    color: rgb(113, 0, 166)
+    color: rgb(23, 162, 184)
 }
 
 </style>
