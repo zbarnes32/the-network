@@ -21,6 +21,7 @@ onMounted(() => { accountData.value = { ...AppState.account } })
 
 async function updateAccount(){
     try {
+        // FIXME pass the value of the ref down here
       await accountService.updateAccount(accountData)
       Pop.success("Update successful")
     }

@@ -25,8 +25,8 @@ async function createPost(){
 <form @submit.prevent="createPost()">
     <div class="network-post-card">
         <textarea v-model="postData.body" name="post-body" class="post-body" id="" placeholder="Share what's happening..." required maxlength="500"></textarea>
-        <label for="imgUrl" class="mx-5 imgUrl-label">Post an image url here:</label>
-        <input v-model="postData.imgUrl" type="url" id="imgUrl" class="post-body imgUrl-input" maxlength="500">
+        <label for="imgUrl" class="mx-5 imgUrl-label" ></label>
+        <input v-model="postData.imgUrl" type="url" id="imgUrl" class="post-body imgUrl-input" maxlength="500" placeholder="Post Image/Gif url here...">
     </div>
     <div class="text-end pt-1">
         <button class="btn btn-info" type="submit"><i class="mdi mdi-send"></i>Post</button>

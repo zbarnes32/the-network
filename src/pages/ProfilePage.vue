@@ -84,9 +84,10 @@ async function getMonetaryPictures(){
                         </div>
                         <div>
                             <p class="card-text bio">{{ profile.bio }}</p>
-                        <div class="text-end">
+                            <!-- FIXME render button only when account.id == profile.id -->
+                        <!-- <div class="text-end">
                             <button class="btn btn-outline-secondary">Edit</button>
-                        </div>
+                        </div> -->
                         </div>
                     </div>
                 </div>
@@ -96,11 +97,11 @@ async function getMonetaryPictures(){
             <MonetaryPicture :monetaryPictureProp="monetaryPicture" />
                 </div>
             </div>
-            
-                <div v-if="account.id == profile.id" class="card col-10 mt-4 p-1">
+                <!-- FIXME Running into error on v-if on line 100 -->
+                <!-- <div v-if="account.id == profile.id" class="card col-10 mt-4 p-1">
                     <div class="card-body d-flex px-1">
                         <img :src="profile.picture" :alt="profile.name" class="post-card-img">
-                        <PostForm />
+                        <PostForm /> -->
                     <!-- <div class="card-body d-flex px-1">
                         <img :src="profile.picture" :alt="profile.name" class="post-card-img">
                         <form>
@@ -108,8 +109,8 @@ async function getMonetaryPictures(){
                                 <textarea name="post-body" class="post-body" id="" placeholder="Share what's happening..."></textarea>
                             </div>
                         </form> -->
-                    </div>
-                </div>
+                    <!-- </div>
+                </div> -->
         </div>  
     </div>
     <section class="row">

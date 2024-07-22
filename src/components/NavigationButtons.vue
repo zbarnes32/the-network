@@ -4,7 +4,7 @@ import { AppState } from '../AppState.js';
 import Pop from '../utils/Pop.js';
 import { postsService } from '../services/PostsService.js';
 
-
+// FIXME bring in the route here, and call a different function in the service if you are on the profile page
 
 const currentPage = computed(() => AppState.currentPage)
 
