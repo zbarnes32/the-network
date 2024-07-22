@@ -8,9 +8,11 @@ import { api } from "./AxiosService.js"
 
 
 class PostsService {
-    async likePost(isPostLiked) {
-        // FIXME send a post request to /api/posts/:id/like, make your you interpolate the id of the post you want to like, there is no request body necessary
-        const response = await api.put('api/posts', isPostLiked)
+    async likePost(postId) {
+        // FIXME send a post request to /api/posts/:id/like, make your you interpolate the id of the post you want to like, there is no request body necessary ✅
+        const response = await api.post(`api/posts/${postId}/like`)
+        logger.log('Liking a post 👍', response.data)
+        
     }
 
     async destroyPost(postId) {

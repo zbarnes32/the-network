@@ -68,7 +68,7 @@ async function updateAccount(){
     </div>
     <div class="mb-2">
         <label for="graduated" class="form-label">Have you graduated?</label>
-        <input v-model="accountData.graduated" type="checkbox" class="form-control" id="graduated">
+        <input v-model="accountData.graduated" type="checkbox" id="graduated">
     </div>
     <button type="submit" class="btn btn-info">Submit</button>
 </form>

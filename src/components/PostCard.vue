@@ -29,9 +29,9 @@ const isPostLiked = ref ({
     liked: false
 })
 
-async function likePost(){
+async function likePost(postId){
     try {
-      await postsService.likePost(isPostLiked.value)
+      await postsService.likePost(postId)
     }
     catch (error){
       Pop.error(error);
@@ -68,8 +68,7 @@ async function likePost(){
                 <span class="pt-3 px-1">Posted on: {{ postProp.createdAt.toLocaleDateString() }}</span>
                 <div>
                     <button v-if="account?.id == postProp.creatorId" @click="destroyPost(postProp.id)" type="button" class="btn btn-outline-danger"><i class="mdi mdi-delete"></i></button>
-                    <input v-model="isPostLiked.liked" type="checkbox" class="form-check-input" id="liked">
-                    <span @click="likePost()" class="likes mdi mdi-heart-outline fs-2 p-1" :class="isPostLiked ? 'mdi-heart-outline' : 'mdi-heart'"></span>
+                    <button @click="likePost(postProp.id)" class="likes mdi mdi-heart-outline fs-2 p-1" :class="isPostLiked ? 'mdi-heart-outline' : 'mdi-heart'"></button>
                     <span class="fs-5 px-1">{{ postProp.likes.length }}</span>
                 </div>
             </div>
