@@ -1,13 +1,29 @@
 <script setup>
 import { RouterLink } from 'vue-router';
 import { Post } from '../models/Post.js';
+import { computed } from 'vue';
+import { AppState } from '../AppState.js';
+import Pop from '../utils/Pop.js';
+import { postsService } from '../services/PostsService.js';
 
+const account = computed(() => AppState.account)
 
+const profile = computed(() => AppState.profile)
 
 defineProps({
     postProp: { type: Post, required: true}
 })
 
+async function destroyPost(postId){
+  try {
+    const wantsToDestroy = await Pop.confirm("Are you sure you want to delete your post?")
+    if (!wantsToDestroy) return
+    await postsService.destroyPost(postId)
+  }
+  catch (error){
+    Pop.error(error);
+  }
+}
 </script>
 
 
@@ -35,6 +51,8 @@ defineProps({
             <div class="d-flex justify-content-between">
                 <span class="pt-3 px-1">Posted on: {{ postProp.createdAt.toLocaleDateString() }}</span>
                 <div>
+                    <button v-if="account?.id == postProp.creatorId" @click="destroyPost(postProp.id)" type="button" class="btn btn-outline-danger"><i class="mdi mdi-delete"></i></button>
+                    
                     <span class="likes mdi mdi-heart-outline fs-2 p-1"></span>
                     <span class="fs-5 px-1">{{ postProp.likes.length }}</span>
                 </div>

@@ -8,6 +8,13 @@ import { api } from "./AxiosService.js"
 
 
 class PostsService {
+  async destroyPost(postId) {
+    const response = await api.delete(`api/posts/${postId}`)
+    logger.log('Going to delete', postId)
+    const postIndex = AppState.posts.findIndex(post => post.id == postId)
+    if (postIndex == -1) throw new Error("Unable to delete!")
+    AppState.posts.splice(postIndex, 1)
+  }
     async createPost(postData) {
         const response = await api.post('api/posts', postData)
         logger.log("created post ✅", response.data)

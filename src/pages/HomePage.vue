@@ -7,6 +7,7 @@ import PostCard from '../components/PostCard.vue';
 import { monetaryPicturesService } from '../services/MonetaryPicturesService.js';
 import MonetaryPicture from '../components/MonetaryPicture.vue';
 import PostForm from '../components/PostForm.vue';
+import { Post } from '../models/Post.js';
 
 const posts = computed(() => AppState.posts)
 
@@ -19,6 +20,11 @@ const monetaryPictures = computed(() => AppState.monetaryPictures)
 onMounted(() => { 
   getPosts() 
   getMonetaryPictures()
+})
+
+
+defineProps({
+    postProp: { type: Post, required: true}
 })
 
 async function getPosts(){
@@ -38,6 +44,8 @@ async function getMonetaryPictures(){
     Pop.error(error);
   }
 }
+
+
 
 </script>
 
