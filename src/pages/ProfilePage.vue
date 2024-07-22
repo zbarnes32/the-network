@@ -1,6 +1,6 @@
 <script setup>
 import { useRoute } from 'vue-router';
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, watchEffect } from 'vue';
 import Pop from '../utils/Pop.js';
 import { profilesService } from '../services/ProfilesService.js';
 import { AppState } from '../AppState.js';
@@ -21,7 +21,7 @@ const monetaryPictures = computed(() => AppState.monetaryPictures)
 
 const account = computed(() => AppState.account)
 
-onMounted(() => {
+watchEffect(() => {
     const profileId = route.params.profileId
     getProfileById(profileId)
     getPostsByProfileId(profileId)

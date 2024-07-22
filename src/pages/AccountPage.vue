@@ -12,6 +12,13 @@ const account = computed(() => AppState.account)
       <h1>Welcome {{ account.name }}</h1>
       <img class="rounded" :src="account.picture" alt="" />
       <p>{{ account.email }}</p>
+      <section class="container">
+        <div class="row">
+          <div class="col-12">
+            <AccountForm />
+          </div>
+        </div>
+      </section>
     </div>
     <div v-else>
       <h1>Loading... <i class="mdi mdi-loading mdi-spin"></i></h1>

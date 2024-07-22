@@ -8,6 +8,10 @@ import { api } from "./AxiosService.js"
 
 
 class PostsService {
+    async likePost(isPostLiked) {
+       const response = await api.put('api/posts', isPostLiked) 
+    }
+    
   async destroyPost(postId) {
     const response = await api.delete(`api/posts/${postId}`)
     logger.log('Going to delete', postId)

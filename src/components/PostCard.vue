@@ -1,7 +1,7 @@
 <script setup>
 import { RouterLink } from 'vue-router';
 import { Post } from '../models/Post.js';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { AppState } from '../AppState.js';
 import Pop from '../utils/Pop.js';
 import { postsService } from '../services/PostsService.js';
@@ -24,6 +24,22 @@ async function destroyPost(postId){
     Pop.error(error);
   }
 }
+
+const isPostLiked = ref ({
+    liked: false
+})
+
+async function likePost(){
+    try {
+      await postsService.likePost(isPostLiked.value)
+    }
+    catch (error){
+      Pop.error(error);
+    }
+}
+
+
+
 </script>
 
 
@@ -52,8 +68,8 @@ async function destroyPost(postId){
                 <span class="pt-3 px-1">Posted on: {{ postProp.createdAt.toLocaleDateString() }}</span>
                 <div>
                     <button v-if="account?.id == postProp.creatorId" @click="destroyPost(postProp.id)" type="button" class="btn btn-outline-danger"><i class="mdi mdi-delete"></i></button>
-                    
-                    <span class="likes mdi mdi-heart-outline fs-2 p-1"></span>
+                    <input v-model="isPostLiked.liked" type="checkbox" class="form-check-input" id="liked">
+                    <span @click="likePost()" class="likes mdi mdi-heart-outline fs-2 p-1" :class="isPostLiked ? 'mdi-heart-outline' : 'mdi-heart'"></span>
                     <span class="fs-5 px-1">{{ postProp.likes.length }}</span>
                 </div>
             </div>
