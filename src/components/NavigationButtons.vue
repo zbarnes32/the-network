@@ -3,14 +3,23 @@ import { computed } from 'vue';
 import { AppState } from '../AppState.js';
 import Pop from '../utils/Pop.js';
 import { postsService } from '../services/PostsService.js';
+import { useRoute } from 'vue-router';
+import { logger } from '../utils/Logger.js';
 
 // FIXME bring in the route here, and call a different function in the service if you are on the profile page
+const route = useRoute()
+const profileId = route.params.profileId
 
 const currentPage = computed(() => AppState.currentPage)
 
 async function changePage(pageNumber){
+  logger.log("Did we get the profileId?",profileId)
     try {
-      await postsService.changePage(pageNumber)
+      if (!profileId){
+        await postsService.changePage(pageNumber)
+      } else {
+        await postsService.getPostsByProfileId(profileId, pageNumber)
+      }
     }
     catch (error){
       Pop.error(error);
